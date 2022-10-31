@@ -1,0 +1,20 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #canvas{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+    border: 2px solid black;
+    background-color: #798CE8;
+  }
+
+  #x-wing, #tie-fighter{
+    display: none;
+  }
