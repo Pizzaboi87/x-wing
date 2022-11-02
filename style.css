@@ -14,6 +14,6 @@
   border: 2px solid black;
 }
 
-#x-wing, #tie-fighter, #tie-bomber-left-right, #tie-bomber-right-left, #layer1{
+#x-wing, #tie-fighter, #tie-bomber-left-right, #tie-bomber-right-left, #tie-interceptor, #layer1, #rebel-logo, #explosion{
   display: none;
 }
