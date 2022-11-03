@@ -2,7 +2,7 @@ export default class UI {
     constructor(game){
         this.game = game;
         this.score = 0;
-        this.winScore = 150;
+        this.winScore = 200;
         this.message = '';
         this.escapeOut = false;
         this.instructions = true;

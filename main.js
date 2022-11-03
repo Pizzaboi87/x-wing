@@ -4,7 +4,7 @@ import Player from './player.js';
 import UI from './ui.js';
 import Explosion from './explosion.js';
 import { TieAdvanced, TieFighter, TieAdvancedInverse, TieInterceptor} from './enemies.js';
-import { BonusLife } from './bonusItems.js';
+import { BonusLife, StealPoints } from './bonusItems.js';
 
 window.addEventListener('load', function(){
   const canvas = document.getElementById('canvas');
@@ -87,7 +87,7 @@ window.addEventListener('load', function(){
         if (this.checkCollision(this.player, item)){
           item.sound.play();
           item.toDelete = true;
-          this.player.lives += 2;
+          item.effect();
         }
       });
       this.bonusItems = this.bonusItems.filter(item => !item.toDelete);
@@ -111,7 +111,9 @@ window.addEventListener('load', function(){
       else this.enemies.push(new TieInterceptor(this));
     }
     addBonusItem(){
-      this.bonusItems.push(new BonusLife(this));
+      let random = Math.random();
+      if (random > 0.5) this.bonusItems.push(new BonusLife(this));
+      else this.bonusItems.push(new StealPoints(this));
     }
     checkCollision(box1, box2){
       return (
