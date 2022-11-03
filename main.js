@@ -141,15 +141,15 @@ window.addEventListener('load', function(){
   
   const game = new Game(canvas.width, canvas.height);
   let lastTime = 0;
-  let music = new Audio('./sounds/space-battle.mp3');
+  const music = new Audio('./sounds/space-battle.mp3');
   
   function animate(timeStamp){
+    music.play();
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    game.update(deltaTime);
+    if (!game.ui.instructions) game.update(deltaTime);
     game.draw(ctx);
-    music.play();
     if (!game.ui.escapeOut) requestAnimationFrame(animate);
   }
 

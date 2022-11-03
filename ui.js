@@ -6,11 +6,14 @@ export default class UI {
         this.message = '';
         this.escapeOut = false;
         this.instructions = true;
-        this.instructionsText1 = "Reach out minimum " + this.winScore + " points to WIN!"
-        this.instructionsText2 = "Move with Arrow Keys, shoot with CTRL"
-        this.instructionsText3 = "When the game ends, press Space to start again!"
-        this.instructionsText4 = "Have fun and may the Force be with You!"
-        this.instructionsText5 = "(Press Enter to hide this message)"
+        this.instructionsText1 = "Reach out minimum " + this.winScore + " points to WIN!";
+        this.instructionsText2 = "Move with Arrow Keys, shoot with CTRL";
+        this.instructionsText3 = "When the game ends, press Space to start again!";
+        this.instructionsText4 = "Have fun and may the Force be with You!";
+        this.instructionsText5 = "(Press Enter to hide this message)";
+        this.image = document.getElementById('sw-logo');
+        this.title = "X-Wing Shooter";
+        this.author = "by Peter Weiser";
     }
     update(){
         if (this.game.player.lives <= 0){
@@ -38,8 +41,13 @@ export default class UI {
             this.escapeOut = true;
         }
         if (this.instructions) {
-            context.font = '20px Orbitron';
+            context.font = '25px Orbitron';
             context.textAlign = 'center';
+            context.drawImage(this.image, this.game.width*0.23, this.game.height*0.3, this.game.width * 0.55, this.game.height * 0.15);
+            context.fillText(this.title, this.game.width*0.5, this.game.height*0.48);
+            context.font = '15px Orbitron';
+            context.fillText(this.author, this.game.width*0.5, this.game.height*0.51);
+            context.font = '20px Orbitron';
             context.fillText(this.instructionsText1, this.game.width*0.5, this.game.height*0.8);
             context.fillText(this.instructionsText2, this.game.width*0.5, this.game.height*0.8 + 25);
             context.fillText(this.instructionsText3, this.game.width*0.5, this.game.height*0.8 + 50);
