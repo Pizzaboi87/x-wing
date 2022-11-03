@@ -13,8 +13,10 @@ export default class Explosion {
         this.fps = Math.random() * 10 + 5;
         this.frameInterval = 1000/this.fps;
         this.frameTimer = 0;
+        this.sound = new Audio('./sounds/explosion.mp3');
     }
     update(deltaTime){
+        this.sound.play();
         if (this.frameTimer > this.frameInterval){
             this.frameX++;
             this.frameTimer = 0;

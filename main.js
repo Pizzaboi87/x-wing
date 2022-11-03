@@ -50,6 +50,7 @@ window.addEventListener('load', function(){
         if (this.checkCollision(this.player, enemy)){
           this.explosions.push(new Explosion(this, enemy));
           enemy.toDelete = true;
+          this.ui.score -= 10;
           this.player.lives -= 2;
         }
         this.player.myLasers.forEach(laser => {
@@ -67,6 +68,7 @@ window.addEventListener('load', function(){
           enemy.enemyLasers.forEach(laser => {
           if (this.checkCollision(laser, this.player)){
             this.player.lives --;
+            this.ui.score -= 5;
             laser.toDelete = true;
           }
         })}
@@ -74,6 +76,7 @@ window.addEventListener('load', function(){
           enemy.enemyBombs.forEach(bomb => {
           if (this.checkCollision(bomb, this.player)){
             this.player.lives --;
+            this.ui.score -= 5;
             bomb.toDelete = true;
           }
         })}
@@ -82,6 +85,7 @@ window.addEventListener('load', function(){
       this.bonusItems.forEach(item => {
         item.update(deltaTime);
         if (this.checkCollision(this.player, item)){
+          item.sound.play();
           item.toDelete = true;
           this.player.lives += 2;
         }
@@ -120,6 +124,7 @@ window.addEventListener('load', function(){
     newGame(){
       this.player.lives = 10;
       this.ui.score = 0;
+      this.ui.instructions = false;
       this.enemies = [];
       this.player.myLasers = [];
       this.bonusItems = [];
@@ -134,6 +139,7 @@ window.addEventListener('load', function(){
   
   const game = new Game(canvas.width, canvas.height);
   let lastTime = 0;
+  let music = new Audio('./sounds/space-battle.mp3');
   
   function animate(timeStamp){
     const deltaTime = timeStamp - lastTime;
@@ -141,9 +147,10 @@ window.addEventListener('load', function(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     game.update(deltaTime);
     game.draw(ctx);
+    music.play();
     if (!game.ui.escapeOut) requestAnimationFrame(animate);
   }
 
   animate(0);
-
+  
 });

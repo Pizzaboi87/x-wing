@@ -46,7 +46,7 @@ export class TieFighter extends Enemy {
         this.height = 88;
         this.x = Math.random() * (this.game.width * 0.95 - this.width);
         this.y = 0 - this.height;
-        this.shootIntense = Math.random() * 500 + 500;
+        this.shootIntense = Math.random() * 1500 + 1000;
         this.lives = 3;
         this.deathScore = 5;
         this.image = document.getElementById('tie-fighter');
@@ -81,10 +81,11 @@ export class TieAdvanced extends Enemy {
         this.deathScore = 3;
         this.image = document.getElementById('tie-bomber-left-right');
         this.frameY = 2;
+        this.sound = new Audio('./sounds/tie-advanced_fly.mp3');
     }
     update(deltaTime){
         this.x++;
-        this.y = this.y;
+        if (this.y < this.game.height * 0.8) this.sound.play();
         this.handleFrame(deltaTime);
         this.bombCounter(deltaTime);
         this.enemyBombs.forEach(bomb => bomb.update());

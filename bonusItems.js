@@ -23,7 +23,7 @@ export class BounusItem {
             this.frameX = 0;
           }
         } else this.timer += deltaTime;
-      }
+    }
 }
 
 export class BonusLife extends BounusItem {
@@ -33,6 +33,7 @@ export class BonusLife extends BounusItem {
         this.height = 50;
         this.maxFrame = 4;
         this.image = document.getElementById('rebel-logo');
+        this.sound = new Audio('./sounds/earn-bonus.mp3');
     }
     update(deltaTime){
         this.y++;
